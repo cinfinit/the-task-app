@@ -1,5 +1,3 @@
-
-
 import { useRouter } from "next/router";
 import React from "react";
 import BoxLayout from "~/components/BoxLayout";
@@ -31,7 +29,7 @@ const SignUpPage: React.FC = () => {
 
     await mutate({ name, email, password });
   };
-  const { formData, errors,  handleChange, handleSubmit } = useForm(
+  const { formData, errors, handleChange, handleSubmit } = useForm(
     {
       name: "",
       email: "",
@@ -77,7 +75,6 @@ const SignUpPage: React.FC = () => {
           <button
             type="submit"
             className="mb-4 mt-3 w-full rounded-md bg-black px-4 py-2 tracking-widest text-white hover:bg-gray-900 focus:bg-gray-900 focus:outline-none"
-           
           >
             CREATE ACCOUNT
           </button>

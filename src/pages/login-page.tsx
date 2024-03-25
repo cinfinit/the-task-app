@@ -12,25 +12,22 @@ const LoginPage = () => {
   const { mutate } = api.authRouter.login.useMutation({
     onSuccess: (dataObj) => {
       if (dataObj) {
- 
         localStorage.setItem("token", JSON.stringify(dataObj.token));
         localStorage.setItem("useremail", JSON.stringify(dataObj.email));
 
         router.push(`/data-page/${dataObj.userid}`);
       }
-   
     },
     onError: (e) => {
       console.log("the error ", e);
-    
     },
   });
   const obSubmit = async () => {
     const { email, password } = formData;
-    
+
     await mutate({ email, password });
   };
-  const { formData, errors,  handleChange, handleSubmit } = useForm(
+  const { formData, errors, handleChange, handleSubmit } = useForm(
     {
       name: "",
       email: "",
@@ -44,7 +41,6 @@ const LoginPage = () => {
   return (
     <>
       <BoxLayout>
-      
         <h1 className="mb-5 text-center text-3xl font-bold text-black">
           Login
         </h1>
@@ -54,7 +50,7 @@ const LoginPage = () => {
         <h1 className="mb-8 text-center text-sm text-black">
           The next gen business marketplace
         </h1>
-       
+
         <form onSubmit={handleSubmit}>
           <InputField
             label="Email"
@@ -72,7 +68,7 @@ const LoginPage = () => {
             onChange={handleChange}
             error={errors.password}
           />
-       
+
           <button className="mb-4 mt-3 w-full rounded-md bg-black px-4 py-2 tracking-widest text-white hover:bg-gray-900 focus:bg-gray-900 focus:outline-none">
             LOGIN
           </button>
@@ -83,7 +79,7 @@ const LoginPage = () => {
         <div className="mt-3 flex items-center justify-center">
           <span className="text-sm text-black">Don't have an Account?</span>
           <a
-            href="/loginpage"
+            href="/signup-page"
             className=" ml-1 text-sm font-bold tracking-widest hover:underline"
           >
             SIGNUP
