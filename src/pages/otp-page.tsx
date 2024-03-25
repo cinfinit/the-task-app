@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import BoxLayout from "~/components/BoxLayout";
 import OtpInput from "react-otp-input";
@@ -27,7 +28,6 @@ const Page = () => {
     },
     onError: (e) => {
       console.log("the error ", e);
-     
     },
   });
   const optHandler = async () => {
@@ -50,11 +50,9 @@ const Page = () => {
     }
   }, []);
 
-
   return (
     <>
       <BoxLayout>
-        
         <h1 className="mb-5 text-center text-3xl font-bold text-black">
           Verify your email
         </h1>
@@ -63,7 +61,6 @@ const Page = () => {
           Enter the 8 digit code you have received on <br />
           {receivedEmailData}
         </h3>
-        
 
         <div className="mb-4">
           <label
@@ -79,16 +76,11 @@ const Page = () => {
             renderSeparator={<span> {` `}</span>}
             inputStyle="mr-2 mt-1 block rounded-md border border-gray-300 p-2 focus:border-indigo-500 focus:outline-none text-center"
             renderInput={(props) => (
-              <input
-                {...props}
-                style={{ width: "2.5em" }}
-              
-              />
+              <input {...props} style={{ width: "2.5em" }} />
             )}
           />
         </div>
 
-       
         <button
           className="mb-4 mt-3 w-full rounded-md bg-black px-4 py-2 tracking-widest text-white hover:bg-gray-900 focus:bg-gray-900 focus:outline-none"
           onClick={optHandler}

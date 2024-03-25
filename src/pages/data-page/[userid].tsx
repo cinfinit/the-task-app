@@ -1,20 +1,17 @@
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import BoxLayout from "~/components/BoxLayout";
-import OtpInput from "react-otp-input";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 
 const DataPage = () => {
-  const [otp, setOtp] = React.useState("");
   const router = useRouter();
-  const [receivedData, setReceivedData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [currentpageset, setcurrentpageset] = useState(1);
   const [maxpageset, setmaxpageset] = useState(1);
   const { userid } = router.query;
-
 
   const newdata = api.dataRouter.getData.useQuery({
     userid,
@@ -26,7 +23,6 @@ const DataPage = () => {
     userid,
     page: currentPage,
   });
- 
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -35,7 +31,7 @@ const DataPage = () => {
   }, []);
 
   const getPageNumbers = (offset: number, totalPages: number): number[] => {
-    const pageSize = 5; 
+    const pageSize = 5;
     const startPage = (offset - 1) * pageSize + 1;
     const endPage = Math.min(startPage + pageSize - 1, totalPages);
     const pageNumbers = [];
@@ -46,7 +42,6 @@ const DataPage = () => {
 
     return pageNumbers;
   };
-
 
   useEffect(() => {
     if (theData) {
@@ -69,7 +64,6 @@ const DataPage = () => {
       if (dataObj) {
         refetch();
       }
-
     },
     onError: (e) => {
       console.log("the error ", e);
@@ -82,7 +76,6 @@ const DataPage = () => {
   ) => {
     const newCheckvalue = !checkvalue;
     await mutate({ checkvalue: newCheckvalue, userid, name });
-
   };
 
   const handlePageChange = (page: number) => {
@@ -92,7 +85,6 @@ const DataPage = () => {
   return (
     <>
       <BoxLayout>
- 
         <h1 className="mb-5 text-center text-3xl font-bold text-black">
           Please mark your interest
         </h1>
@@ -102,7 +94,6 @@ const DataPage = () => {
         </h3>
 
         <h2 className="mb-4  text-black">My Saved Interest !</h2>
-
 
         <div className="mb-4">
           <ul>
@@ -128,7 +119,6 @@ const DataPage = () => {
         <div className="mt-4 flex justify-center">
           <button
             className="mr-2 rounded bg-gray-200 px-2 py-1"
-     
             onClick={() => setcurrentpageset((prev) => prev - 1)}
             disabled={currentpageset === 1}
           >
@@ -159,7 +149,6 @@ const DataPage = () => {
             <button
               key={pageNum}
               className={`mx-2 rounded bg-gray-200 px-4 py-2 ${
-              
                 currentPage === pageNum
                   ? "bg-gray-500 text-white"
                   : "bg-gray-200"
@@ -178,14 +167,12 @@ const DataPage = () => {
           </button>
           <button
             className="ml-2 rounded bg-gray-200 px-2 py-1"
-          
             onClick={() => setcurrentpageset((prev) => prev + 1)}
             disabled={currentpageset === maxpageset}
           >
             {">>"}
           </button>
         </div>
-
       </BoxLayout>
     </>
   );

@@ -110,7 +110,7 @@ export const generateJwtToken = (user: any): string => {
 
 
 
-export const createUserAccount = async (userData) => {
+export const createUserAccount = async (userData:any) => {
   try {
    
     const otp = Math.floor(10000000 + Math.random() * 90000000).toString();
@@ -183,7 +183,7 @@ userData.categories = [
         count: userData.count,
         email:userData.email,
         categories: {
-          create: userData.categories.map((category) => ({
+          create: userData.categories.map((category:any) => ({
             name: category.name,
             active: category.active,
           })),
