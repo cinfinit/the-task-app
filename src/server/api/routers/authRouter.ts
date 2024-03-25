@@ -43,14 +43,15 @@ export const authRouter = createTRPCRouter({
       try {
         const { name, email, password } = input;
         const newUser = await createUserAccount({ name, email, password });
-        const userOtp = newUser.otp
-        const userid = newUser.userid
-          return { message: 'Signup successful',email,userOtp,userid };
+        // const userOtp = newUser.otp
+        // const userid = newUser.userid
+          // return { message: 'Signup successful',email,userOtp,userid };
+          return { message: 'Signup successful'};
        
       
       } catch (error) {
         
-        throw new Error('Failed to signup: ',error);
+        throw new Error(`Failed to signup: ${error}`,error);
         
       }
     }),
