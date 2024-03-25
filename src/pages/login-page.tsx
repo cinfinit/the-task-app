@@ -5,7 +5,7 @@ import InputField from "~/components/InputField";
 
 import useForm from "~/hooks/useForm";
 import { api } from "~/utils/api";
-
+import { ToastContainer, toast } from "react-toastify";
 const LoginPage = () => {
   const router = useRouter();
 
@@ -19,6 +19,11 @@ const LoginPage = () => {
       }
     },
     onError: (e) => {
+      toast(`some error occured , please try again `, {
+        theme: "dark",
+        autoClose: 5000,
+      });
+
       console.log("the error ", e);
     },
   });
@@ -86,6 +91,7 @@ const LoginPage = () => {
           </a>
         </div>
       </BoxLayout>
+      <ToastContainer />
     </>
   );
 };

@@ -282,3 +282,40 @@ const getUsersFromDatabase = (): any[] => {
   }
 };
 
+
+export const clearCategoryData = async () => {
+  try {
+    const prisma = new PrismaClient();
+    
+    await prisma.category.deleteMany({});
+
+    console.log('All category data cleared successfully');
+  } catch (error) {
+    console.error('Failed to clear category data:', error);
+    throw new Error('Failed to clear category data');
+  }
+};
+
+export const clearUserData = async () => {
+  try {
+    const prisma = new PrismaClient();
+    
+    await prisma.users.deleteMany({});
+
+    console.log('All user data cleared successfully');
+  } catch (error) {
+    console.error('Failed to clear user data:', error);
+    throw new Error('Failed to clear user data');
+  }
+};
+
+export const clearDatabase = async () => {
+  try {
+    await clearCategoryData();
+    await clearUserData();
+    console.log('Database cleared successfully');
+  } catch (error) {
+    console.error('Failed to clear database:', error);
+    throw new Error('Failed to clear database');
+  }
+};

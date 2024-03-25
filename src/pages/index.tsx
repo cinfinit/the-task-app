@@ -1,7 +1,23 @@
 import Head from "next/head";
 import BoxLayout from "~/components/BoxLayout";
-
+import { api } from "~/utils/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Home() {
+  const { mutate } = api.dataRouter.clearDatabase.useMutation({
+    onSuccess: (dataObj) => {
+      if (dataObj.success) {
+        toast(`Database Data cleared :0`, { theme: "dark", autoClose: 5000 });
+      }
+    },
+    onError: (e) => {
+      console.log("the error ", e);
+    },
+  });
+
+  const resetDatabaseHandler = async () => {
+    await mutate();
+  };
   return (
     <>
       <BoxLayout>
@@ -35,7 +51,14 @@ export default function Home() {
             </a>
           </li>
         </ul>
+        <button
+          className="mb-4 mt-3 w-full rounded-md bg-black px-4 py-2 tracking-widest text-white hover:bg-gray-900 focus:bg-gray-900 focus:outline-none"
+          onClick={resetDatabaseHandler}
+        >
+          RESET DB
+        </button>
       </BoxLayout>
+      <ToastContainer />
     </>
   );
 }

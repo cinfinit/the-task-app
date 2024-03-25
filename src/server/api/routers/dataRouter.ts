@@ -1,8 +1,8 @@
-//@ts-nocheck
+// @ts-nocheck
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 import { z } from 'zod';
-import { getUserById} from "../authUtils";
+import { clearDatabase, getUserById} from "../authUtils";
 import {  PrismaClient } from '@prisma/client';
 
 
@@ -87,6 +87,15 @@ const prisma = new PrismaClient();
         return { categories,totalCategories };
       } catch (error) {
         throw new Error('Failed to fetch data: ',error);
+      }
+    }),
+    clearDatabase: publicProcedure
+    .mutation(async ({ ctx }) => {
+      try {
+        await clearDatabase();
+        return { success: true };
+      } catch (error) {
+        throw new Error(`Failed to clear database: `, error);
       }
     }),
 });
