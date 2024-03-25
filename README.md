@@ -2,6 +2,11 @@
 
 This is a Task App, which was created to complete the task given by the T Team , [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
+
+Here is the live link : 
+
+[Live App](https://the-task-app-3t9l-mfyyytmmv-cinfinits-projects.vercel.app/)
+
 ## What's next? How do I make an app with this?
 
 I try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you .
