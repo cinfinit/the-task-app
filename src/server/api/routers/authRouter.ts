@@ -45,8 +45,8 @@ export const authRouter = createTRPCRouter({
         const newUser = await createUserAccount({ name, email, password });
         // const userOtp = newUser.otp
         // const userid = newUser.userid
-        const userOtp= 29384
-        const userid = 12243
+        const userOtp= '29384'
+        const userid = '12243'
           return { message: 'Signup successful',email,userOtp,userid };
   
        
