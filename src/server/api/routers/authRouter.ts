@@ -50,7 +50,7 @@ export const authRouter = createTRPCRouter({
       
       } catch (error) {
         
-        throw new Error('Failed to signup: ');
+        throw new Error('Failed to signup: ',error);
         
       }
     }),
@@ -77,7 +77,7 @@ export const authRouter = createTRPCRouter({
           }
         }
       } catch (error) {
-        throw new Error('Failed to verify OTP: ');
+        throw new Error('Failed to verify OTP: ',error);
       }
     }),
 });

@@ -86,7 +86,7 @@ const prisma = new PrismaClient();
 
         return { categories,totalCategories };
       } catch (error) {
-        throw new Error('Failed to fetch data: ');
+        throw new Error('Failed to fetch data: ',error);
       }
     }),
 });
